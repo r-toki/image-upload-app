@@ -67,7 +67,7 @@ const FileViewer = ({ file }: { file: File }) => {
               .toString()
               .length.toString()
               .split('')
-              .reduce((pre, cur, idx) => (idx % 3 ? cur + pre : cur + ',' + pre))}文字`}
+              .reduce((pre, cur, idx) => (idx % 3 ? pre + cur : pre + ',' + cur))}文字`}
           </div>
           <img src={encoded.toString()} width="400" height="400" style={{ objectFit: 'cover' }} />
         </>
