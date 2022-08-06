@@ -1,32 +1,34 @@
-import './App.css';
+import { useFileInput, useObjectUrl } from './hooks';
 
-import { useState } from 'react';
-
-import reactLogo from './assets/react.svg';
-
-function App() {
-  const [count, setCount] = useState(0);
+export const App = () => {
+  const fileInput = useFileInput();
+  const { objectURL } = useObjectUrl(fileInput.file);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div
+      style={{
+        width: '720px',
+        padding: '20px 12px',
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        gap: '12px',
+      }}
+    >
+      <div style={{ display: 'flex', gap: '8px' }}>
+        <button onClick={fileInput.onClick}>選択</button>
+        <button onClick={fileInput.reset}>破棄</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+
+      <input
+        ref={fileInput.ref}
+        style={{ display: 'none' }}
+        type="file"
+        accept="image/*"
+        onChange={fileInput.onChange}
+      />
+      {objectURL && <img src={objectURL} />}
     </div>
   );
-}
-
-export default App;
+};
