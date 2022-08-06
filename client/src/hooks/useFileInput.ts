@@ -5,8 +5,6 @@ export const useFileInput = () => {
 
   const ref = useRef<HTMLInputElement>(null);
 
-  const reset = () => setFile(undefined);
-
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const files = e.target.files;
     if (files && files[0]) setFile(files[0]);
@@ -19,8 +17,8 @@ export const useFileInput = () => {
 
   return {
     file,
+    setFile,
     ref,
-    reset,
     onChange,
     onClick,
   };

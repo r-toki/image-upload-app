@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useObjectUrl = (object?: File | Blob | MediaSource) => {
+export const useObjectUrl = (object?: File | Blob) => {
   const [objectURL, setObjectUrl] = useState<string>();
 
   useEffect(() => {
